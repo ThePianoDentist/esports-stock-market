@@ -117,3 +117,21 @@ func apiRequest(url string) ([]byte, error) {
 	time.Sleep(time.Second)
 	return body, err
 }
+
+func leagueListingCall(apiKey string) ([]byte, error) {
+	url := fmt.Sprintf("http://api.steampowered.com/IDOTA2Match_570/GetLeagueListing/v0001?key=%s",
+		apiKey)
+	return apiRequest(url)
+}
+
+func matchHistoryCall(apiKey string, leagueID int64) ([]byte, error) {
+	url := fmt.Sprintf("http://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v0001?key=%s&leagueid=%d",
+		apiKey, leagueID)
+	return apiRequest(url)
+}
+
+func matchDetailsCall(apiKey string, matchID int64) ([]byte, error) {
+	url := fmt.Sprintf("http://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v0001?key=%s&match_id=%d",
+		apiKey, matchID)
+	return apiRequest(url)
+}

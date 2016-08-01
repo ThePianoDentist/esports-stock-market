@@ -70,14 +70,14 @@ type MatchDetails struct {
 type MatchPlayerDetails struct {
 	Account_id    int64 `"account_id": 98887913`
 	Player_slot   int16 `"player_slot": 0,`
-	hero_id       int16 `"hero_id": 69,`
-	item_0        int16 `"item_0": 1,`
-	item_1        int16 `"item_1": 34,`
-	item_2        int16 `"item_2": 0,`
-	item_3        int16 `"item_3": 79,`
-	item_4        int16 `"item_4": 214,`
-	item_5        int16 `"item_5": 38,`
-	kills         int16 `"kills": 2,`
+	Hero_id       int16 `"hero_id": 69,`
+	Item_0        int16 `"item_0": 1,`
+	Item_1        int16 `"item_1": 34,`
+	Item_2        int16 `"item_2": 0,`
+	Item_3        int16 `"item_3": 79,`
+	Item_4        int16 `"item_4": 214,`
+	Item_5        int16 `"item_5": 38,`
+	Kills         int16 `"kills": 2,`
 	Deaths        int16 `"deaths": 1,`
 	Assists       int16 `"assists": 13,`
 	Leaver_status int16 `"leaver_status": 0,`

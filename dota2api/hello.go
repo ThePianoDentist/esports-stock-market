@@ -26,6 +26,8 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
+
+	// 4649 is leagueid for manilla major
 	league_dict, err := getLeagueListingResult([]byte(body))
 	sexy_body, err := ioutil.ReadFile(os.Getenv("HOME") + "/go/src/stockdota/dota2api/tournament_match_history.json")
 	if err != nil {
@@ -36,6 +38,7 @@ func main() {
 	//league_dict := json.Unmarshal([]byte(body), &Leagues)
 	fmt.Println(league_dict.Result.Leagues[0].Tournament_url)
 	fmt.Println(tourney_match_hist.Result.Matches[0].Match_id)
+	createTables()
 }
 
 /*

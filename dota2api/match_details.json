@@ -1,0 +1,362 @@
+{
+	"result": {
+		"players": [
+			{
+				"account_id": 98887913,
+				"player_slot": 0,
+				"hero_id": 69,
+				"item_0": 1,
+				"item_1": 34,
+				"item_2": 0,
+				"item_3": 79,
+				"item_4": 214,
+				"item_5": 38,
+				"kills": 2,
+				"deaths": 1,
+				"assists": 13,
+				"leaver_status": 0,
+				"last_hits": 45,
+				"denies": 0,
+				"gold_per_min": 437,
+				"xp_per_min": 460,
+				"level": 11
+			},
+			{
+				"account_id": 100883708,
+				"player_slot": 1,
+				"hero_id": 27,
+				"item_0": 180,
+				"item_1": 34,
+				"item_2": 0,
+				"item_3": 0,
+				"item_4": 16,
+				"item_5": 0,
+				"kills": 2,
+				"deaths": 2,
+				"assists": 6,
+				"leaver_status": 0,
+				"last_hits": 22,
+				"denies": 2,
+				"gold_per_min": 320,
+				"xp_per_min": 283,
+				"level": 8
+			},
+			{
+				"account_id": 88508515,
+				"player_slot": 2,
+				"hero_id": 106,
+				"item_0": 41,
+				"item_1": 50,
+				"item_2": 36,
+				"item_3": 71,
+				"item_4": 185,
+				"item_5": 46,
+				"kills": 7,
+				"deaths": 0,
+				"assists": 7,
+				"leaver_status": 0,
+				"last_hits": 97,
+				"denies": 4,
+				"gold_per_min": 577,
+				"xp_per_min": 602,
+				"level": 13
+			},
+			{
+				"account_id": 89217927,
+				"player_slot": 3,
+				"hero_id": 86,
+				"item_0": 36,
+				"item_1": 92,
+				"item_2": 0,
+				"item_3": 180,
+				"item_4": 0,
+				"item_5": 0,
+				"kills": 4,
+				"deaths": 0,
+				"assists": 7,
+				"leaver_status": 0,
+				"last_hits": 24,
+				"denies": 2,
+				"gold_per_min": 334,
+				"xp_per_min": 399,
+				"level": 11
+			},
+			{
+				"account_id": 89157606,
+				"player_slot": 4,
+				"hero_id": 78,
+				"item_0": 1,
+				"item_1": 60,
+				"item_2": 182,
+				"item_3": 36,
+				"item_4": 180,
+				"item_5": 46,
+				"kills": 4,
+				"deaths": 0,
+				"assists": 5,
+				"leaver_status": 0,
+				"last_hits": 73,
+				"denies": 20,
+				"gold_per_min": 483,
+				"xp_per_min": 503,
+				"level": 11
+			},
+			{
+				"account_id": 91698091,
+				"player_slot": 128,
+				"hero_id": 40,
+				"item_0": 41,
+				"item_1": 212,
+				"item_2": 86,
+				"item_3": 94,
+				"item_4": 29,
+				"item_5": 0,
+				"kills": 0,
+				"deaths": 7,
+				"assists": 3,
+				"leaver_status": 0,
+				"last_hits": 69,
+				"denies": 5,
+				"gold_per_min": 319,
+				"xp_per_min": 313,
+				"level": 9
+			},
+			{
+				"account_id": 90882159,
+				"player_slot": 129,
+				"hero_id": 63,
+				"item_0": 63,
+				"item_1": 56,
+				"item_2": 44,
+				"item_3": 36,
+				"item_4": 0,
+				"item_5": 212,
+				"kills": 1,
+				"deaths": 2,
+				"assists": 0,
+				"leaver_status": 0,
+				"last_hits": 55,
+				"denies": 3,
+				"gold_per_min": 304,
+				"xp_per_min": 390,
+				"level": 10
+			},
+			{
+				"account_id": 113800818,
+				"player_slot": 130,
+				"hero_id": 68,
+				"item_0": 43,
+				"item_1": 42,
+				"item_2": 29,
+				"item_3": 187,
+				"item_4": 34,
+				"item_5": 44,
+				"kills": 2,
+				"deaths": 1,
+				"assists": 0,
+				"leaver_status": 0,
+				"last_hits": 19,
+				"denies": 2,
+				"gold_per_min": 194,
+				"xp_per_min": 186,
+				"level": 7
+			},
+			{
+				"account_id": 101695162,
+				"player_slot": 131,
+				"hero_id": 16,
+				"item_0": 1,
+				"item_1": 188,
+				"item_2": 34,
+				"item_3": 29,
+				"item_4": 16,
+				"item_5": 46,
+				"kills": 0,
+				"deaths": 4,
+				"assists": 2,
+				"leaver_status": 0,
+				"last_hits": 46,
+				"denies": 1,
+				"gold_per_min": 252,
+				"xp_per_min": 246,
+				"level": 8
+			},
+			{
+				"account_id": 108382060,
+				"player_slot": 132,
+				"hero_id": 53,
+				"item_0": 50,
+				"item_1": 44,
+				"item_2": 0,
+				"item_3": 38,
+				"item_4": 67,
+				"item_5": 28,
+				"kills": 0,
+				"deaths": 5,
+				"assists": 1,
+				"leaver_status": 0,
+				"last_hits": 64,
+				"denies": 5,
+				"gold_per_min": 320,
+				"xp_per_min": 275,
+				"level": 8
+			}
+		]
+		,
+		"radiant_win": true,
+		"duration": 908,
+		"pre_game_duration": 0,
+		"start_time": 1405973570,
+		"match_id": 789645621,
+		"match_seq_num": 709365483,
+		"tower_status_radiant": 2039,
+		"tower_status_dire": 1974,
+		"barracks_status_radiant": 63,
+		"barracks_status_dire": 63,
+		"cluster": 111,
+		"first_blood_time": 33,
+		"lobby_type": 2,
+		"human_players": 10,
+		"leagueid": 600,
+		"positive_votes": 38824,
+		"negative_votes": 14720,
+		"game_mode": 2,
+		"flags": 0,
+		"engine": 0,
+		"radiant_score": 0,
+		"dire_score": 0,
+		"radiant_team_id": 1375614,
+		"radiant_name": "Newbee",
+		"radiant_logo": 351645122255494137,
+		"radiant_team_complete": 1,
+		"dire_team_id": 726228,
+		"dire_name": "Vici Gaming",
+		"dire_logo": 35248220277958798,
+		"dire_team_complete": 1,
+		"radiant_captain": 98887913,
+		"dire_captain": 91698091,
+		"picks_bans": [
+			{
+				"is_pick": false,
+				"hero_id": 15,
+				"team": 0,
+				"order": 0
+			},
+			{
+				"is_pick": false,
+				"hero_id": 77,
+				"team": 1,
+				"order": 1
+			},
+			{
+				"is_pick": false,
+				"hero_id": 43,
+				"team": 0,
+				"order": 2
+			},
+			{
+				"is_pick": false,
+				"hero_id": 58,
+				"team": 1,
+				"order": 3
+			},
+			{
+				"is_pick": true,
+				"hero_id": 27,
+				"team": 0,
+				"order": 4
+			},
+			{
+				"is_pick": true,
+				"hero_id": 68,
+				"team": 1,
+				"order": 5
+			},
+			{
+				"is_pick": true,
+				"hero_id": 53,
+				"team": 1,
+				"order": 6
+			},
+			{
+				"is_pick": true,
+				"hero_id": 78,
+				"team": 0,
+				"order": 7
+			},
+			{
+				"is_pick": false,
+				"hero_id": 10,
+				"team": 0,
+				"order": 8
+			},
+			{
+				"is_pick": false,
+				"hero_id": 73,
+				"team": 1,
+				"order": 9
+			},
+			{
+				"is_pick": false,
+				"hero_id": 45,
+				"team": 0,
+				"order": 10
+			},
+			{
+				"is_pick": false,
+				"hero_id": 7,
+				"team": 1,
+				"order": 11
+			},
+			{
+				"is_pick": true,
+				"hero_id": 63,
+				"team": 1,
+				"order": 12
+			},
+			{
+				"is_pick": true,
+				"hero_id": 86,
+				"team": 0,
+				"order": 13
+			},
+			{
+				"is_pick": true,
+				"hero_id": 16,
+				"team": 1,
+				"order": 14
+			},
+			{
+				"is_pick": true,
+				"hero_id": 69,
+				"team": 0,
+				"order": 15
+			},
+			{
+				"is_pick": false,
+				"hero_id": 54,
+				"team": 1,
+				"order": 16
+			},
+			{
+				"is_pick": false,
+				"hero_id": 99,
+				"team": 0,
+				"order": 17
+			},
+			{
+				"is_pick": true,
+				"hero_id": 40,
+				"team": 1,
+				"order": 18
+			},
+			{
+				"is_pick": true,
+				"hero_id": 106,
+				"team": 0,
+				"order": 19
+			}
+		]
+
+	}
+}

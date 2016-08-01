@@ -1,0 +1,20 @@
+{
+	"result": {
+		"leagues": [
+			{
+				"name": "#DOTA_Item_The_Yolo_Tournament_4",
+				"leagueid": 4670,
+				"description": "#DOTA_Item_Desc_The_Yolo_Tournament_4",
+				"tournament_url": "https://theyolotournament.wordpress.com/",
+				"itemdef": 17061
+			},
+			{
+				"name": "#DOTA_Item_WellPlay_Invitational_by_VitalBet",
+				"leagueid": 4669,
+				"description": "#DOTA_Item_Desc_WellPlay_Invitational_by_VitalBet",
+				"tournament_url": "http://wellplay.co/",
+				"itemdef": 17062
+			}
+		]
+	}
+}

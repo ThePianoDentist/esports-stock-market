@@ -3,20 +3,35 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"os"
 	"time"
+
+	"github.com/BurntSushi/toml"
 
 	dat "gopkg.in/mgutz/dat.v1"
 	runner "gopkg.in/mgutz/dat.v1/sqlx-runner"
 )
 
+type Config struct {
+	User     string
+	Dbpasswd string
+	Hostname string
+}
+
 var DB *runner.DB
 
 func dbinit() {
+	//configFile := fmt.Sprintf("config.toml", os.Getenv("$GOPATH"))
+	var config Config
+	if _, err := toml.DecodeFile("config.toml", &config); err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	// create a normal database connection through database/sql
+	// If hangs for infinity check postgres started/active
 	db, err := sql.Open("postgres",
-		fmt.Sprintf("dbname=stockdota user=%s password=%s host=localhost sslmode=disable", os.Getenv("USER"),
-			os.Getenv("hmmmmm")))
+		fmt.Sprintf("dbname=stockdota user=%s password=%s host=%s sslmode=disable", config.User,
+			config.Dbpasswd, config.Hostname))
 	if err != nil {
 		panic(err)
 	}

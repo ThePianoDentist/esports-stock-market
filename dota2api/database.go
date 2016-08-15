@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"log"
+	"os/user"
 	"time"
 
 	"github.com/BurntSushi/toml"
@@ -21,8 +23,13 @@ var DB *runner.DB
 
 func dbinit() {
 	//configFile := fmt.Sprintf("config.toml", os.Getenv("$GOPATH"))
+	usr, err := user.Current()
+	if err != nil {
+		log.Fatal(err)
+	}
 	var config Config
-	if _, err := toml.DecodeFile("config.toml", &config); err != nil {
+	if _, _ = toml.DecodeFile(usr.HomeDir+"/go/src/stockdota/config.toml",
+		&config); err != nil {
 		fmt.Println(err)
 		return
 	}

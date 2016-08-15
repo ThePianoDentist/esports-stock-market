@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"log"
+	"os/user"
 	"time"
 
 	"github.com/BurntSushi/toml"
@@ -30,21 +32,28 @@ type tournamentDB struct {
 var DB *runner.DB
 
 func dbinit() {
-	//configFile := fmt.Sprintf("config.toml", os.Getenv("$GOPATH"))
+	usr, err := user.Current()
+	if err != nil {
+		log.Fatal(err)
+	}
 	var config Config
-	if _, err := toml.DecodeFile("config.toml", &config); err != nil {
+	if _, err = toml.DecodeFile(usr.HomeDir+"/go/src/stockdota/config.toml",
+		&config); err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	// create a normal database connection through database/sql
 	// If hangs for infinity check postgres started/active
+	fmt.Println(config.User,
+		config.Dbpasswd, config.Hostname)
 	db, err := sql.Open("postgres",
 		fmt.Sprintf("dbname=stockdota user=%s password=%s host=%s sslmode=disable", config.User,
 			config.Dbpasswd, config.Hostname))
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("wahey open")
 
 	// ensures the database can be pinged with an exponential backoff (15 min)
 	runner.MustPing(db)
@@ -64,14 +73,15 @@ func dbinit() {
 	runner.LogQueriesThreshold = 10 * time.Millisecond
 
 	DB = runner.NewDB(db, "postgres")
+	fmt.Println("connected to db")
 }
 
 func createTables() {
-	_, err := DB.Exec(`CREATE TABLE IF NOT EXISTS fantasypoints(
+	_, err := DB.Exec(`CREATE TABLE IF NOT EXISTS fantasyPointsLol(
 		name     CHAR(50),
 		position CHAR(50),
 		team     CHAR(50),
-		points   double,
+		points   double precision,
 		games    integer,
 		kills    integer,
 		deaths   integer,
@@ -81,29 +91,28 @@ func createTables() {
 		);`)
 
 	if err != nil {
+		fmt.Printf(err.Error())
 		panic(err)
 	}
 }
 
-func insertIntoFantasyPoints(newPlayers []Player) {
-
-	sqlString := `PREPARE insertTournament (int, int, int, int, int) AS
-    INSERT INTO tournament_match_history VALUES ($1, $2, $3, $4, $5);`
-
-	_, err := DB.Exec(sqlString)
+func insertIntoFantasyPoints(player Player) {
+	fmt.Println("Doing the upsert")
+	_, err := DB.Exec(`WITH upsert AS (UPDATE fantasypointslol SET name=$1, position=$2, team=$3,
+		points=$4, games=$5, kills=$6, deaths=$7, assists=$8, cs=$9,
+		lastUpdated=$10 WHERE name=$1 RETURNING *) INSERT INTO fantasypointslol
+		(name, position, team, points, games, kills, deaths, assists, cs, lastUpdated)
+		SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10 WHERE NOT EXISTS (SELECT * FROM upsert);
+		`, player.name, player.position, player.team, player.points,
+		player.games,
+		player.kills,
+		player.deaths,
+		player.assists,
+		player.cs,
+		player.lastUpdated)
 
 	if err != nil {
 		panic(err)
-	}
-
-	for _, player := range newPlayers {
-		/*_, err := DB.Exec(`INSERT INTO tournament_match_history VALUES ($1, $2, $3, $4, $5);`,
-		element.Info.Leagueid, element.History.Status, element.History.Num_results,
-		element.History.Total_results, element.History.Results_remaining)*/
-
-		if err != nil {
-			panic(err)
-		}
 	}
 }
 

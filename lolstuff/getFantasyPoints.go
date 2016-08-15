@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/tebeka/selenium"
@@ -21,8 +22,14 @@ type Player struct {
 	lastUpdated time.Time
 }
 
+func init() {
+	dbinit()
+}
+
 func main() {
-	caps := selenium.Capabilities{"browserName": "firefox"}
+	createTables()
+
+	caps := selenium.Capabilities{"browserName": "chrome"}
 	wd, err := selenium.NewRemote(caps, "")
 	if err != nil {
 		fmt.Println(err)
@@ -30,83 +37,103 @@ func main() {
 	defer wd.Quit()
 
 	wd.Get("http://fantasy.euw.lolesports.com/en-GB/stats")
-	fmt.Println("Sleeping 15")
-	time.Sleep(15 * time.Second)
-	playerRow, _ := wd.FindElements(selenium.ByXPATH,
-		"//tr[contains(@class, 'row-for-player')]") //whats the _?
-	for _, webPlayer := range playerRow {
-		columns, _ := webPlayer.FindElements(selenium.ByXPATH, "//td")
-		playerName := make(chan string)
-		playerPosition := make(chan string)
-		playerTeam := make(chan string)
-		playerPoints := make(chan float64)
-		playerGames := make(chan int64)
-		playerKills := make(chan int64)
-		playerDeaths := make(chan int64)
-		playerAssists := make(chan int64)
-		playerCS := make(chan int64)
+	fmt.Println("Sleeping 5")
+	time.Sleep(5 * time.Second)
+	playerRow, err := wd.FindElements(selenium.ByXPATH,
+		"//tr[contains(@class, 'row-for-player')]")
+	if err == nil {
+		for indexp, webPlayer := range playerRow {
+			fmt.Printf("%d", indexp)
+			columns, _ := webPlayer.FindElements(selenium.ByXPATH, "td")
+			playerName := make(chan string)
+			playerPosition := make(chan string)
+			playerTeam := make(chan string)
+			playerPoints := make(chan float64)
+			playerGames := make(chan int64)
+			playerKills := make(chan int64)
+			playerDeaths := make(chan int64)
+			playerAssists := make(chan int64)
+			playerCS := make(chan int64)
 
-		for index, col := range columns {
-			colText, err := col.Text()
-			fmt.Println(colText)
-			index := index
-			if err == nil {
-				fmt.Println("go you fecker")
-				go func() {
-					fmt.Println("in go")
-					switch index {
-					case 0:
-						playerName <- colText
-						fmt.Println("done ping chan")
-					case 1:
-						playerPosition <- colText
-					case 2:
-						playerTeam <- colText
-					case 3:
-						colNum, err := strconv.ParseFloat(colText, 64)
-						if err == nil {
-							playerPoints <- colNum
+			for index, col := range columns {
+				colText, err := col.Text()
+				index := index
+				// Using goroutines not sensible here. just wanted try them out
+				if err == nil {
+					go func() {
+						switch index {
+						case 0:
+							playerName <- colText
+						case 1:
+							playerPosition <- colText
+						case 2:
+							playerTeam <- colText
+						case 3:
+							stripped := strings.Replace(colText, ",", "", -1)
+							colNum, err := strconv.ParseFloat(stripped, 64)
+							if err == nil {
+								playerPoints <- colNum
+							} else {
+								fmt.Println(err.Error())
+							}
+						case 5:
+							stripped := strings.Replace(colText, ",", "", -1)
+							colNum, err := strconv.ParseInt(stripped, 10, 64)
+							if err == nil {
+								fmt.Println("channeling games")
+								playerGames <- colNum
+							} else {
+								fmt.Println(err.Error())
+							}
+						case 6:
+							stripped := strings.Replace(colText, ",", "", -1)
+							colNum, err := strconv.ParseInt(stripped, 10, 64)
+							if err == nil {
+								playerKills <- colNum
+							} else {
+								fmt.Println(err.Error())
+							}
+						case 7:
+							stripped := strings.Replace(colText, ",", "", -1)
+							colNum, err := strconv.ParseInt(stripped, 10, 64)
+							if err == nil {
+								playerDeaths <- colNum
+							} else {
+								fmt.Println(err.Error())
+							}
+						case 8:
+							stripped := strings.Replace(colText, ",", "", -1)
+							colNum, err := strconv.ParseInt(stripped, 10, 64)
+							if err == nil {
+								playerAssists <- colNum
+							} else {
+								fmt.Println(err.Error())
+							}
+						case 9:
+							stripped := strings.Replace(colText, ",", "", -1)
+							colNum, err := strconv.ParseInt(stripped, 10, 64)
+							if err == nil {
+								playerCS <- colNum
+							} else {
+								fmt.Println(err.Error())
+							}
+						default:
+							fmt.Printf("")
+							/*extra cols
+							10+ ka
+							3k4k5k
+							*/
 						}
-					case 5:
-						colNum, err := strconv.ParseInt(colText, 10, 64)
-						if err == nil {
-							playerGames <- colNum
-						}
-					case 6:
-						colNum, err := strconv.ParseInt(colText, 10, 64)
-						if err == nil {
-							playerKills <- colNum
-						}
-					case 7:
-						colNum, err := strconv.ParseInt(colText, 10, 64)
-						if err == nil {
-							playerDeaths <- colNum
-						}
-					case 8:
-						colNum, err := strconv.ParseInt(colText, 10, 64)
-						if err == nil {
-							playerAssists <- colNum
-						}
-					case 9:
-						colNum, err := strconv.ParseInt(colText, 10, 64)
-						if err == nil {
-							playerCS <- colNum
-						}
-					default:
-						fmt.Println("field skipping")
-						/*extra cols
-						10+ ka
-						3k4k5k
-						*/
-					}
-					fmt.Println("after switch")
-				}()
-				fmt.Println("after go")
+					}()
+				}
 			}
+			lastUpdated := time.Now()
+			player := Player{<-playerName, <-playerPosition, <-playerTeam,
+				<-playerPoints, <-playerGames, <-playerKills, <-playerDeaths,
+				<-playerAssists, <-playerCS, lastUpdated}
+			insertIntoFantasyPoints(player)
 		}
-		lastUpdated := time.Now()
-		_ = Player{<-playerName, <-playerPosition, <-playerTeam,
-			<-playerPoints, <-playerGames, <-playerKills, <-playerDeaths,
-			<-playerAssists, <-playerCS, lastUpdated}
+	} else {
+		panic(err)
 	}
 }

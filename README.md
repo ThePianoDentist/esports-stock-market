@@ -1,6 +1,10 @@
 # esports-stock-market
 
 
+I DID NOT GOOGLE HARD ENOUGH. TURNS OUT ESL ALREADY HAVE THIS FANTASY SYSTEM ACROSS MULTIPLE GAMES WHERE PLAYER VALUE FLUCTUATES BASED ON POPULARITY. 
+
+(they do not appear to have leagues spanning multiple tournaments though, which I would like. However it means I'd rather focus on other projects first)
+
 why?
 
 because current esports fantasy leagues suck.
